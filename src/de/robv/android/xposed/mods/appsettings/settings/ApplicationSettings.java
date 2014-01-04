@@ -391,6 +391,16 @@ public class ApplicationSettings extends ActionBarActivity {
             }
         });
         
+		// Setting for disabling fullscreen IME
+		((CheckBox) findViewById(R.id.chkNoFullscreenIME)).setChecked(prefs.getBoolean(pkgName + Common.PREF_NO_FULLSCREEN_IME, false));
+		// Track changes to know if the settings were changed
+		((CheckBox) findViewById(R.id.chkNoFullscreenIME)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				dirty = true;
+			}
+		});
+
 		// Update No Big Notifications field
 		((CheckBox) findViewById(R.id.chkNoBigNotifications)).setChecked(prefs.getBoolean(pkgName + Common.PREF_NO_BIG_NOTIFICATIONS, false));
 		// Track changes to the No Big Notifications checkbox to know if the settings were changed
@@ -594,6 +604,11 @@ public class ApplicationSettings extends ActionBarActivity {
 				} else {
 					prefsEditor.remove(pkgName + Common.PREF_RESIDENT);
 				}
+				if (((CheckBox) findViewById(R.id.chkNoFullscreenIME)).isChecked()) {
+					prefsEditor.putBoolean(pkgName + Common.PREF_NO_FULLSCREEN_IME, true);
+				} else {
+					prefsEditor.remove(pkgName + Common.PREF_NO_FULLSCREEN_IME);
+				}
 				if (((CheckBox) findViewById(R.id.chkNoBigNotifications)).isChecked()) {
 					prefsEditor.putBoolean(pkgName + Common.PREF_NO_BIG_NOTIFICATIONS, true);
 				} else {
@@ -630,6 +645,7 @@ public class ApplicationSettings extends ActionBarActivity {
                 prefsEditor.remove(pkgName + Common.PREF_SCREEN_ON);
                 prefsEditor.remove(pkgName + Common.PREF_ORIENTATION);
                 prefsEditor.remove(pkgName + Common.PREF_RESIDENT);
+                prefsEditor.remove(pkgName + Common.PREF_NO_FULLSCREEN_IME);
                 prefsEditor.remove(pkgName + Common.PREF_NO_BIG_NOTIFICATIONS);
                 prefsEditor.remove(pkgName + Common.PREF_INSISTENT_NOTIF);
                 prefsEditor.remove(pkgName + Common.PREF_REVOKEPERMS);
