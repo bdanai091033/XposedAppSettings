@@ -1,6 +1,7 @@
 package de.robv.android.xposed.mods.appsettings.settings;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -36,6 +37,12 @@ public class PermissionsListAdapter extends ArrayAdapter<PermissionInfo> impleme
 		this.disabledPerms = disabledPerms;
 		this.allowEdits = allowEdits;
 		canEdit = false;
+	}
+
+	public void addAll(Collection<? extends PermissionInfo> collections) {
+		for (PermissionInfo collection : collections) {
+			add(collection);
+		}
 	}
 
 	public void setCanEdit(boolean canEdit) {
@@ -160,9 +167,7 @@ public class PermissionsListAdapter extends ArrayAdapter<PermissionInfo> impleme
 		@Override
 		protected void publishResults(CharSequence constraint, FilterResults results) {
 			clear();
-			for (PermissionInfo value : (List<PermissionInfo>) results.values) {
-				add(value);
-			}
+			addAll((List<PermissionInfo>) results.values);
 			notifyDataSetChanged();
 		}
 
