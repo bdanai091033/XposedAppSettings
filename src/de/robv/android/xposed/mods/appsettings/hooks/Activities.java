@@ -13,13 +13,10 @@ import java.lang.reflect.Method;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.inputmethodservice.InputMethodService;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.mods.appsettings.Common;
@@ -138,7 +135,7 @@ public class Activities {
 				protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
 					Integer orientation = (Integer) getAdditionalInstanceField(param.thisObject, PROP_ORIENTATION);
 					if (orientation != null)
-						param.args[0] = Common.orientationCodes[orientation];
+						param.args[0] = orientation;
 				}
 			});
 		} catch (Throwable e) {
@@ -189,21 +186,5 @@ public class Activities {
 	    } catch (Throwable e) {
 	        XposedBridge.log(e);
 	    }
-
-		try {
-			findAndHookMethod(InputMethodService.class, "doStartInput",
-					InputConnection.class, EditorInfo.class, boolean.class, new XC_MethodHook() {
-				@Override
-				protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-					EditorInfo info = (EditorInfo) param.args[1];
-					if (info != null && info.packageName != null) {
-						if (XposedMod.isActive(info.packageName, Common.PREF_NO_FULLSCREEN_IME))
-							info.imeOptions |= EditorInfo.IME_FLAG_NO_FULLSCREEN;
-					}
-				}
-			});
-		} catch (Throwable e) {
-			XposedBridge.log(e);
-		}
     }
 }

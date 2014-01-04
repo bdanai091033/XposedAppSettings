@@ -4,7 +4,7 @@
     <string name="app_mod_summary">Capaz de definir uma série de configurações comuns individualmente por app:
 DPI; Escala de fonte; Substituir recursos carregados; Localidade;
 Tela cheia; Remover barra de título; Manter tela ligada; Exibir sobre a tela de bloqueio;
-Permanecer na memória; No Fullscreen IME; Orientação; Notificações persistentes; Sem notificações grandes; Revogar permissões</string>
+Permanecer na memória; Orientação; Notificações persistentes; Sem notificações grandes; Revogar permissões</string>
 
 
     <!-- Main screen -->
@@ -23,7 +23,6 @@ Permanecer na memória; No Fullscreen IME; Orientação; Notificações persiste
 \n- manter a tela ligada enquanto o app estiver visível
 \n- mostrar o app sobre a lockscreen
 \n- permanecer na memória RAM
-\n- disable fullscreen keyboard input
 \n- forçar orientação (retrato/paisagem/auto)
 \n- notificações persistentes (repetir os sons)
 \n- desativar notificações expandidas
@@ -70,7 +69,6 @@ ativado nas configurações!</string>
     <string name="settings_screenon">Manter tela</string>
     <string name="settings_showwhenlocked">Exibir bloqueado</string>
     <string name="settings_resident">Residente</string>
-    <string name="settings_nofullscreenime">No Fullscreen IME</string>
     <string name="settings_orientation">Orientação</string>
     <string name="settings_insistentnotif">Notificações insistentes</string>
     <string name="settings_nobignotif">Sem expansão de notif.</string>
