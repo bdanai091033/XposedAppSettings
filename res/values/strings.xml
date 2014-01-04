@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">App Settings</string>
+    <string name="app_name">App Settings GB</string>
     <string name="app_mod_summary">Ability to set several generic configurations on a per-app basis:
 DPI; Font scale; Override loaded resouces; Locale;
 Fullscreen; No title; Keep screen on; Show above lockscreen;
