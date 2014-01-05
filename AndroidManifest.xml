@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.robv.android.xposed.mods.appsettings"
     android:versionCode="25"
-    android:versionName="1.7.1" xmlns:tools="http://schemas.android.com/tools">
+    android:versionName="1.7.1-gb" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk android:minSdkVersion="10" tools:ignore="UsesMinSdkAttributes"/>
 
