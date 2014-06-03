@@ -81,7 +81,6 @@ public class PackagePermissions extends BroadcastReceiver {
 					ArrayList<String> origRequestedPermissions = (ArrayList<String>) getObjectField(param.args[0], "requestedPermissions");
 					param.setObjectExtra("orig_requested_permissions", origRequestedPermissions);
 
-					android.util.Log.d("me.piebridge.xposedappsettings", "disabledPermissions: " + disabledPermissions.toString());
 					ArrayList<String> newRequestedPermissions = new ArrayList<String>(origRequestedPermissions.size());
 					for (String perm: origRequestedPermissions) {
 						if (!disabledPermissions.contains(perm))
