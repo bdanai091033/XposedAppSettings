@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:yourapp="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/menu_save"
-          android:icon="@android:drawable/ic_menu_save"
-          android:title="@string/menu_save"
-          yourapp:showAsAction="always|withText" /> 
-    <item android:id="@+id/menu_app_launch"
-          android:icon="@android:drawable/ic_media_play"
-          android:title="@string/menu_launch"
-          yourapp:showAsAction="withText" />
-    <item android:id="@+id/menu_app_settings"
-          android:icon="@android:drawable/ic_menu_manage"
-          android:title="@string/menu_settings"
-          yourapp:showAsAction="withText" />
-    <item android:id="@+id/menu_app_store"
-          android:title="@string/menu_playstore"
-          yourapp:showAsAction="withText" />
+
+    <item
+        android:id="@+id/menu_save"
+        android:icon="@android:drawable/ic_menu_save"
+        yourapp:showAsAction="always|withText"
+        android:title="@string/menu_save"/>
+    <item
+        android:id="@+id/menu_app_launch"
+        android:icon="@android:drawable/ic_media_play"
+        yourapp:showAsAction="withText"
+        android:title="@string/menu_launch"/>
+    <item
+        android:id="@+id/menu_app_settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        yourapp:showAsAction="withText"
+        android:title="@string/menu_settings"/>
+    <item
+        android:id="@+id/menu_app_store"
+        yourapp:showAsAction="withText"
+        android:title="@string/menu_playstore"/>
+
 </menu>

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">App Settings GB</string>
-    <string name="app_mod_summary">Ability to set several generic configurations on a per-app basis:
-DPI; Font scale; Override loaded resouces; Locale;
-Fullscreen; No title; Keep screen on; Show above lockscreen;
-Resident in memory; No fullscreen IME; Orientation; Insistent notifications; No big notifications; Revoke Permissions</string>
+    <string name="app_mod_summary">Set generic configurations on a per-app basis:
+DPI; Override loaded resouces; Locale; Fullscreen;
+Resident in memory; Orientation; Revoke Permissions; &#8230;</string>
 
 
     <!-- Main screen -->
@@ -27,6 +25,10 @@ Resident in memory; No fullscreen IME; Orientation; Insistent notifications; No 
 \n- force orientation (portrait/landscape/auto)
 \n- insistent notifications (loop the sound)
 \n- disable big (expanded) notifications
+\n- notifications priority
+\n- exclude app from recents
+\n- mute audio (for most apps)
+\n- force using legacy (navbar) menu button
 \n- revoke permissions</string>
     <string name="app_version">Version: %s</string>
     <string name="app_translation">Translator: %s</string>
@@ -64,6 +66,7 @@ is enabled in its configuration!</string>
     <string name="settings_listres">List res.</string>
     <string name="settings_screen">Screen (dp)</string>
     <string name="settings_xlargeres">xlarge res.</string>
+    <string name="settings_resonwidgets">Apply res to widgets</string>
     <string name="settings_locale">Locale</string>
     <string name="settings_fullscreen">Fullscreen</string>
     <string name="settings_notitle">No title</string>
@@ -74,7 +77,11 @@ is enabled in its configuration!</string>
     <string name="settings_orientation">Orientation</string>
     <string name="settings_insistentnotif">Insistent notifications</string>
     <string name="settings_nobignotif">No big notifications</string>
+    <string name="settings_notifpriority">Notifications priority</string>
+    <string name="settings_mute">Mute audio</string>
+    <string name="settings_legacy_menu">Legacy menu button</string>
     <string name="settings_permissions">Permissions</string>
+    <string name="settings_recents_mode">Show in recents</string>
 
     <string name="settings_default">(default)</string>
 
@@ -86,6 +93,17 @@ is enabled in its configuration!</string>
     <string name="settings_ori_portrait">Always portrait</string>
     <string name="settings_ori_landscape">Always landscape</string>
     <string name="settings_ori_forceauto">Force auto-rotation</string>
+    <string name="settings_ori_portrait_sensor">Always portrait (sensor)</string>
+    <string name="settings_ori_landscape_sensor">Always landscape (sensor)</string>
+    <string name="settings_ori_portrait_reverse">Always portrait (reverse)</string>
+    <string name="settings_ori_landscape_reverse">Always landscape (reverse)</string>
+    <string name="settings_ori_forceauto_4way">Force auto-rotation (4-way)</string>
+
+    <string name="settings_npri_max">Max</string>
+    <string name="settings_npri_high">High</string>
+    <string name="settings_npri_normal">Normal</string>
+    <string name="settings_npri_low">Low</string>
+    <string name="settings_npri_min">Min</string>
 
     <!-- List resources -->
     <string name="res_title">Resources</string>

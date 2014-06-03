@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
+import me.piebridge.util.SharedPreferencesUtil;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +22,6 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.mods.appsettings.Common;
 import de.robv.android.xposed.mods.appsettings.XposedMod;
-import de.robv.android.xposed.mods.appsettings.settings.ApplicationSettings;
 
 public class PackagePermissions extends BroadcastReceiver {
 	private final Object pmSvc;
@@ -42,10 +42,14 @@ public class PackagePermissions extends BroadcastReceiver {
 		 */
 		try {
 			final Class<?> clsPMS;
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+			final String grantPermissions;
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
 				clsPMS = findClass("com.android.server.pm.PackageManagerService", XposedMod.class.getClassLoader());
-			else
+				grantPermissions = "grantPermissionsLPw";
+			} else {
 				clsPMS = findClass("com.android.server.PackageManagerService", XposedMod.class.getClassLoader());
+				grantPermissions = "grantPermissionsLP";
+			}
 
 			// Listen for broadcasts from the Settings part of the mod, so it's applied immediately
 			findAndHookMethod(clsPMS, "systemReady", new XC_MethodHook() {
@@ -60,14 +64,8 @@ public class PackagePermissions extends BroadcastReceiver {
 				}
 			});
 
-			// if the user has disabled certain permissions for an app, do as if the hadn't requested them 
-			String methodName;
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
-				methodName = "grantPermissionsLPw";
-			} else {
-				methodName = "grantPermissionsLP";
-			}
-			findAndHookMethod(clsPMS, methodName, "android.content.pm.PackageParser$Package", boolean.class,
+			// if the user has disabled certain permissions for an app, do as if the hadn't requested them
+			findAndHookMethod(clsPMS, grantPermissions, "android.content.pm.PackageParser$Package", boolean.class,
 					new XC_MethodHook() {
 				@SuppressWarnings("unchecked")
 				@Override
@@ -76,13 +74,14 @@ public class PackagePermissions extends BroadcastReceiver {
 					if (!XposedMod.isActive(pkgName) || !XposedMod.prefs.getBoolean(pkgName + Common.PREF_REVOKEPERMS, false))
 						return;
 
-					Set<String> disabledPermissions = ApplicationSettings.getStringSet(XposedMod.prefs, pkgName + Common.PREF_REVOKELIST, null);
+					Set<String> disabledPermissions = SharedPreferencesUtil.getStringSet(XposedMod.prefs, pkgName + Common.PREF_REVOKELIST, null);
 					if (disabledPermissions == null || disabledPermissions.isEmpty())
 						return;
 
 					ArrayList<String> origRequestedPermissions = (ArrayList<String>) getObjectField(param.args[0], "requestedPermissions");
 					param.setObjectExtra("orig_requested_permissions", origRequestedPermissions);
 
+					android.util.Log.d("me.piebridge.xposedappsettings", "disabledPermissions: " + disabledPermissions.toString());
 					ArrayList<String> newRequestedPermissions = new ArrayList<String>(origRequestedPermissions.size());
 					for (String perm: origRequestedPermissions) {
 						if (!disabledPermissions.contains(perm))
@@ -90,8 +89,8 @@ public class PackagePermissions extends BroadcastReceiver {
 						else
 							// you requested those internet permissions? I didn't read that, sorry
 							Log.w(Common.TAG, "Not granting permission " + perm
-	                                + " to package " + pkgName
-	                                + " because you think it should not have it");
+									+ " to package " + pkgName
+									+ " because you think it should not have it");
 					}
 
 					setObjectField(param.args[0], "requestedPermissions", newRequestedPermissions);

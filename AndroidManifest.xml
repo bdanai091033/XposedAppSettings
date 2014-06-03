@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.robv.android.xposed.mods.appsettings"
-    android:versionCode="25"
-    android:versionName="1.7.1" xmlns:tools="http://schemas.android.com/tools">
+    android:versionCode="1000280"
+    android:versionName="1.9-gb" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk android:minSdkVersion="10" tools:ignore="UsesMinSdkAttributes"/>
 
@@ -26,12 +26,12 @@
             </intent-filter>
         </activity>
         <activity
-           	android:name=".settings.ApplicationSettings"
+            android:name=".settings.ApplicationSettings"
             android:label="@string/settings_title"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize">
         </activity>
-        
+
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -40,7 +40,7 @@
             android:value="@string/app_mod_summary" />
         <meta-data
             android:name="xposedminversion"
-            android:value="30.1+" />
+            android:value="52+" />
     </application>
 
 </manifest>

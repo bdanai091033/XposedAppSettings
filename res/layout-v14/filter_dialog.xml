@@ -41,7 +41,7 @@
     </ScrollView>
 
     <LinearLayout
-        style="?attr/buttonBarStyle"
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
@@ -50,21 +50,21 @@
 
         <Button
             android:id="@+id/btnFilterCancel"
-            style="?attr/buttonBarButtonStyle"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_cancel" />
 
         <Button
             android:id="@+id/btnFilterClear"
-            style="?attr/buttonBarButtonStyle"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_clear" />
 
         <Button
             android:id="@+id/btnFilterApply"
-            style="?attr/buttonBarButtonStyle"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_apply" />
