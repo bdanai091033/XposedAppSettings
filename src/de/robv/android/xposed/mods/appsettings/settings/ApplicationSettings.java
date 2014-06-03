@@ -316,8 +316,7 @@ public class ApplicationSettings extends ActionBarActivity {
 		// Update Legacy Menu field
 		((CheckBox) findViewById(R.id.chkLegacyMenu)).setChecked(prefs.getBoolean(pkgName + Common.PREF_LEGACY_MENU, false));
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-			findViewById(R.id.chkLegacyMenu).setEnabled(false);
-			((CheckBox) findViewById(R.id.chkLegacyMenu)).setChecked(false);
+			findViewById(R.id.chkLegacyMenu).setVisibility(View.GONE);
 		}
 
 		// Setting for permissions revoking
